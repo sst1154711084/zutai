@@ -1,4 +1,4 @@
-package com.sst.demo;
+package com.sst.projectService;
 
 import com.baomidou.mybatisplus.annotation.DbType;
 import com.baomidou.mybatisplus.annotation.IdType;
@@ -9,14 +9,16 @@ import com.baomidou.mybatisplus.generator.config.PackageConfig;
 import com.baomidou.mybatisplus.generator.config.StrategyConfig;
 import com.baomidou.mybatisplus.generator.config.rules.DateType;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
 
 /**
  * @author
  * @since 2018/12/13
  */
+@SpringBootTest
 public class CodeGenerator {
-
+    //mp代码生成
     @Test
     public void run() {
 
@@ -69,9 +71,10 @@ public class CodeGenerator {
         strategy.setControllerMappingHyphenStyle(true); //url中驼峰转连字符
 
         mpg.setStrategy(strategy);
-
-
         // 6、执行
         mpg.execute();
     }
+
 }
+
+
