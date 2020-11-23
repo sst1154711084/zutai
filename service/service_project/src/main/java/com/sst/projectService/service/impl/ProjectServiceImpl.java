@@ -1,6 +1,7 @@
 package com.sst.projectService.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.sst.commonutils.MyException;
 import com.sst.projectService.entity.Layer;
 import com.sst.projectService.entity.Project;
 import com.sst.projectService.entity.ro.ResultProject;
@@ -12,8 +13,11 @@ import com.sst.projectService.service.ProjectService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -41,6 +45,8 @@ public class ProjectServiceImpl extends ServiceImpl<ProjectMapper, Project> impl
 
     @Override
     public ResultProject getProject(String id) {
+        if(listByIds(Collections.singletonList(id)).size()==0)
+            throw new MyException("项目不存在");
         ResultProject result = new ResultProject();
         QueryWrapper wrapper = new QueryWrapper();
         wrapper.eq("project_id",id);
@@ -51,5 +57,18 @@ public class ProjectServiceImpl extends ServiceImpl<ProjectMapper, Project> impl
         result.setLayer(layer);
         result.setComponents(list);
         return result;
+    }
+
+    @Override
+    public boolean deleteProject(String id) {
+        if(listByIds(Collections.singletonList(id)).size()==0)
+            throw new MyException("项目不存在");
+        removeById(id);
+        QueryWrapper wrapper = new QueryWrapper();
+        wrapper.eq("project_id",id);
+        layerService.remove(wrapper);
+        graphService.remove(wrapper);
+        chartService.remove(wrapper);
+        return true;
     }
 }

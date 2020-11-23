@@ -1,6 +1,7 @@
 package com.sst.projectService.controller;
 
 
+import com.sst.commonutils.NotBlank;
 import com.sst.commonutils.R;
 import com.sst.projectService.entity.Project;
 import com.sst.projectService.entity.ro.ResultProject;
@@ -16,7 +17,7 @@ import java.util.List;
 
 /**
  * <p>
- *  前端控制器
+ * 前端控制器
  * </p>
  *
  * @author sst
@@ -27,26 +28,30 @@ import java.util.List;
 public class ProjectController {
     @Autowired
     ProjectService projectService;
+
     //1.返回所有工程
     @RequestMapping("/getAllProject")
-    public R getAllProject(@RequestBody(required = false) Project project){
+    public R getAllProject(@RequestBody(required = false) Project project) {
         List<Project> list = projectService.getAllProject(project);
         return R.ok().data(list);
     }
+
     //2.删除工程
     @RequestMapping("/deleteProject")
-    public R deleteProject(@RequestParam String id){
-        return R.ok().data(projectService.removeById(id));
+    public R deleteProject(@RequestParam @NotBlank String id) {
+        return R.ok().data(projectService.deleteProject(id));
     }
+
     //3.新建工程
     @RequestMapping("/addProject")
-    public R addProject(@RequestBody Project project){
+    public R addProject(@RequestBody Project project) {
         return R.ok().data(projectService.save(project));
     }
+
     //4.获取工程
     @RequestMapping("/getProject")
-    public R getProject(@RequestParam String id){
-        ResultProject result =  projectService.getProject(id);
+    public R getProject(@RequestParam @NotBlank String id) {
+        ResultProject result = projectService.getProject(id);
         return R.ok().data(result);
     }
 

@@ -1,6 +1,7 @@
 package com.sst.projectService.controller;
 
 
+import com.sst.commonutils.NotBlank;
 import com.sst.commonutils.R;
 import com.sst.projectService.entity.Sharedlibrary;
 import com.sst.projectService.service.SharedlibraryService;
@@ -35,21 +36,21 @@ public class SharedlibraryController {
 
     //2.增加库
     @RequestMapping("/addLibrary")
-    public R addLibrary(@RequestParam String name) {
+    public R addLibrary(@RequestParam @NotBlank String name) {
         Sharedlibrary library = sharedlibraryService.addLibrary(name);
         return R.ok().data(library);
     }
 
     //3.删除库
     @RequestMapping("/deleteLibrary")
-    public R deleteLibrary(@RequestParam String id){
+    public R deleteLibrary(@RequestParam @NotBlank String id){
         sharedlibraryService.deleteLibraryById(id);
         return R.ok().data("删除成功");
     }
 
     //4.编辑库
     @RequestMapping("/updateLibrary")
-    public R updateLibrary(@RequestParam String id,@RequestParam String name){
+    public R updateLibrary(@RequestParam @NotBlank String id, @RequestParam @NotBlank String name){
         Sharedlibrary library = sharedlibraryService.updateLibrary(id,name);
         return R.ok().data(library);
     }

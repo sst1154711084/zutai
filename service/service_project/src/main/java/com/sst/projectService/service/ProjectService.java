@@ -19,4 +19,6 @@ public interface ProjectService extends IService<Project> {
     List<Project> getAllProject(Project project);
 
     ResultProject getProject(String id);
+
+    boolean deleteProject(String id);
 }

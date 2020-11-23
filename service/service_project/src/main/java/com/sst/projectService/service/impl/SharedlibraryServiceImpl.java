@@ -28,8 +28,6 @@ public class SharedlibraryServiceImpl extends ServiceImpl<SharedlibraryMapper, S
 
     @Override
     public Sharedlibrary addLibrary(String name) {
-        if (StringUtils.isEmpty(name))
-            throw new MyException("库名不能为空");
         QueryWrapper<Sharedlibrary> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("name", name);
         List<Sharedlibrary> sharedlibraries = list(queryWrapper);
@@ -53,8 +51,6 @@ public class SharedlibraryServiceImpl extends ServiceImpl<SharedlibraryMapper, S
 
     @Override
     public Sharedlibrary updateLibrary(String id, String name) {
-        if (StringUtils.isEmpty(name))
-            throw new MyException("库名不能为空");
         Collection<Sharedlibrary> sharedlibraries = listByIds(Collections.singletonList(id));
         if (sharedlibraries.size() == 0)
             throw new MyException("库不存在");
