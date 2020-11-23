@@ -1,5 +1,6 @@
 package com.sst.projectService.entity;
 
+import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.IdType;
 import java.util.Date;
 import com.baomidou.mybatisplus.annotation.TableId;
@@ -83,10 +84,10 @@ public class Graph implements Serializable {
     @TableField("zIndex")
     private Integer zIndex;
 
-    @ApiModelProperty(value = "生成时间")
+    @TableField(fill = FieldFill.INSERT)
     private Date createTime;
 
-    @ApiModelProperty(value = "更新时间")
+    @TableField(fill = FieldFill.INSERT_UPDATE)
     private Date updateTime;
 
     @ApiModelProperty(value = "圆角角度")

@@ -49,8 +49,6 @@ public class ProjectServiceImpl extends ServiceImpl<ProjectMapper, Project> impl
         list.addAll(graphService.listObjs(wrapper));
         list.addAll(chartService.listObjs(wrapper));
         result.setLayer(layer);
-        if(null!=layer)
-            result.setName(layer.getName());
         result.setComponents(list);
         return result;
     }

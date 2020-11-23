@@ -3,6 +3,8 @@ package com.sst.projectService.service;
 import com.sst.projectService.entity.Sharedlibrary;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.util.List;
+
 /**
  * <p>
  *  服务类
@@ -13,4 +15,9 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface SharedlibraryService extends IService<Sharedlibrary> {
 
+    Sharedlibrary addLibrary(String name);
+
+    void deleteLibraryById(String id);
+
+    Sharedlibrary updateLibrary(String id, String name);
 }

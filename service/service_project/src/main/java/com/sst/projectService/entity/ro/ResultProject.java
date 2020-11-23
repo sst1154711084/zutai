@@ -7,7 +7,6 @@ import java.util.List;
 
 @Data
 public class ResultProject {
-    private String name;
     private Layer layer;
     private List<Object> components;
 }
