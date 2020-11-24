@@ -13,4 +13,9 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface LayerService extends IService<Layer> {
 
+    Layer addLayer(Layer layer);
+
+    void deleteLayer(String id);
+
+    Layer updateLayer(Layer layer);
 }
