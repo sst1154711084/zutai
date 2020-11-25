@@ -4,10 +4,8 @@ import com.sst.projectService.entity.Component;
 import com.sst.projectService.entity.Layer;
 import lombok.Data;
 
-import java.util.List;
-
 @Data
-public class ResultProject {
-    private Layer layer;
-    private List<Component> components;
+public class RequestProject {
+    Layer layer;
+    Component[] components;
 }

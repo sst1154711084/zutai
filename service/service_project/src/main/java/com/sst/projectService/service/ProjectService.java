@@ -1,5 +1,7 @@
 package com.sst.projectService.service;
 
+import com.sst.projectService.entity.Component;
+import com.sst.projectService.entity.Layer;
 import com.sst.projectService.entity.Project;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.sst.projectService.entity.ro.ResultProject;
@@ -21,4 +23,8 @@ public interface ProjectService extends IService<Project> {
     ResultProject getProject(String id);
 
     boolean deleteProject(String id);
+
+    Project addProject(Project project);
+
+    void saveProject(String projectId, Layer layer, Component[] components);
 }

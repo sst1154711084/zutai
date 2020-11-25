@@ -94,7 +94,7 @@ public class Graph implements Serializable {
     private Double radius;
 
     @ApiModelProperty(value = "是否可见")
-    private Integer visible;
+    private boolean visible;
 
     @ApiModelProperty(value = "前端生成id")
     private String identifier;

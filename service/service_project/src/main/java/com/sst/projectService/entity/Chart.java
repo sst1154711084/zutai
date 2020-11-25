@@ -57,7 +57,7 @@ public class Chart implements Serializable {
     private Integer h;
 
     @ApiModelProperty(value = "是否可以移动")
-    private Integer locked;
+    private Boolean locked;
 
     @ApiModelProperty(value = "对应的项目id")
     private String projectId;

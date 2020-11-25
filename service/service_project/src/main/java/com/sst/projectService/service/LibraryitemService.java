@@ -3,6 +3,8 @@ package com.sst.projectService.service;
 import com.sst.projectService.entity.Libraryitem;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.util.List;
+
 /**
  * <p>
  *  服务类
@@ -13,4 +15,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface LibraryitemService extends IService<Libraryitem> {
 
+    List<Libraryitem> getLibraryItemsById(String libraryId);
 }

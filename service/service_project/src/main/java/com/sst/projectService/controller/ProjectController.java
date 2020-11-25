@@ -4,6 +4,7 @@ package com.sst.projectService.controller;
 import com.sst.commonutils.NotBlank;
 import com.sst.commonutils.R;
 import com.sst.projectService.entity.Project;
+import com.sst.projectService.entity.ro.RequestProject;
 import com.sst.projectService.entity.ro.ResultProject;
 import com.sst.projectService.service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +42,8 @@ public class ProjectController {
     //3.新建工程
     @RequestMapping("/addProject")
     public R addProject(@RequestBody Project project) {
-        return R.ok().data(projectService.save(project));
+        Project project2 = projectService.addProject(project);
+        return R.ok().data(project2);
     }
 
     //4.获取工程
@@ -49,6 +51,13 @@ public class ProjectController {
     public R getProject(@RequestParam @NotBlank String id) {
         ResultProject result = projectService.getProject(id);
         return R.ok().data(result);
+    }
+
+    //5.保存工程
+    @RequestMapping("/saveProject")
+    public R saveProject(@RequestParam @NotBlank String id, @RequestBody RequestProject requestProject){
+        projectService.saveProject(id,requestProject.getLayer(),requestProject.getComponents());
+        return R.ok().message("保存成功");
     }
 
 }
