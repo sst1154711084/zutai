@@ -167,10 +167,13 @@ public class ProjectServiceImpl extends ServiceImpl<ProjectMapper, Project> impl
 
     @Override
     public void saveProject(String projectId,Layer layer,Component[] components) {
+        if(listByIds(Collections.singletonList(projectId)).size()==0)
+            throw new MyException("项目不存在");
+        deleteProject(projectId);
         List<Graph> graphs = new ArrayList<>();
         List<Chart> charts = new ArrayList<>();
         layer.setProjectId(projectId);
-        layerService.saveOrUpdate(layer);
+        layerService.save(layer);
         for(Component component : components){
             if("graph".equals(component.getTitle())){
                 Graph graph = ctoGraph(projectId,component);
@@ -181,8 +184,8 @@ public class ProjectServiceImpl extends ServiceImpl<ProjectMapper, Project> impl
                 charts.add(chart);
             }
         }
-        graphService.saveOrUpdateBatch(graphs);
-        chartService.saveOrUpdateBatch(charts);
+        graphService.saveBatch(graphs);
+        chartService.saveBatch(charts);
     }
 
     private Chart ctoChart(String projectId,Component component) {
