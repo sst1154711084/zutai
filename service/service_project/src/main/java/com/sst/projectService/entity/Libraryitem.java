@@ -42,8 +42,9 @@ public class Libraryitem implements Serializable {
     private String name;
 
     @ApiModelProperty(value = "该组件所属库id")
-    @TableField("libraryId")
     private String libraryId;
 
+    private String url;
 
+    private String lujing;
 }

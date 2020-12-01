@@ -16,11 +16,13 @@ public class CheckParamsInterceptor extends HandlerInterceptorAdapter {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 
-        List<String> paramsName = getParamsName((HandlerMethod)handler);
-        for(String s : paramsName){
-            String parameter = request.getParameter(s);
-            if(StringUtils.isEmpty(parameter)){
-                throw new MyException("参数"+s+"不能为空");
+        if(HandlerMethod.class.isInstance(handler)) {
+            List<String> paramsName = getParamsName((HandlerMethod) handler);
+            for (String s : paramsName) {
+                String parameter = request.getParameter(s);
+                if (StringUtils.isEmpty(parameter)) {
+                    throw new MyException("参数" + s + "不能为空");
+                }
             }
         }
         return true;

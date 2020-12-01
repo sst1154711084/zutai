@@ -15,5 +15,6 @@ import java.util.List;
  */
 public interface LibraryitemService extends IService<Libraryitem> {
 
-    List<Libraryitem> getLibraryItemsById(String libraryId);
+    List<Libraryitem> getLibrary(String libraryId);
+
 }

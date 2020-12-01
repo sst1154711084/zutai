@@ -1,5 +1,6 @@
 package com.sst.projectService.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.sst.projectService.entity.Libraryitem;
 import com.sst.projectService.entity.Sharedlibrary;
 import com.sst.projectService.mapper.LibraryitemMapper;
@@ -23,12 +24,11 @@ import java.util.List;
 @Service
 public class LibraryitemServiceImpl extends ServiceImpl<LibraryitemMapper, Libraryitem> implements LibraryitemService {
 
-    @Autowired
-    SharedlibraryService sharedlibraryService;
     @Override
-    public List<Libraryitem> getLibraryItemsById(String libraryId) {
-        Sharedlibrary sharedlibrary = sharedlibraryService.getById(libraryId);
-
-        return null;
+    public List<Libraryitem> getLibrary(String libraryId) {
+        QueryWrapper<Libraryitem> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("library_id",libraryId);
+        List<Libraryitem> list = list(queryWrapper);
+        return list;
     }
 }
