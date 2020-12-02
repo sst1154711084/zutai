@@ -183,6 +183,9 @@ public class ProjectServiceImpl extends ServiceImpl<ProjectMapper, Project> impl
                 Chart chart = ctoChart(projectId,component);
                 charts.add(chart);
             }
+            if("image".equals(component.getTitle())){
+
+            }
         }
         graphService.saveBatch(graphs);
         chartService.saveBatch(charts);

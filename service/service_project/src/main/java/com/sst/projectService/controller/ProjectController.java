@@ -55,8 +55,8 @@ public class ProjectController {
 
     //5.保存工程
     @RequestMapping("/saveProject")
-    public R saveProject(@RequestParam @NotBlank String id, @RequestBody RequestProject requestProject){
-        projectService.saveProject(id,requestProject.getLayer(),requestProject.getComponents());
+    public R saveProject(@RequestBody RequestProject requestProject){
+        projectService.saveProject(requestProject.getId(),requestProject.getLayer(),requestProject.getComponents());
         return R.ok().message("保存成功");
     }
 

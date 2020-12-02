@@ -6,6 +6,7 @@ import lombok.Data;
 
 @Data
 public class RequestProject {
+    String id;
     Layer layer;
     Component[] components;
 }
