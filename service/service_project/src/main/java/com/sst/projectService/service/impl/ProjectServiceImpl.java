@@ -161,7 +161,15 @@ public class ProjectServiceImpl extends ServiceImpl<ProjectMapper, Project> impl
         List<Project> projects = list(queryWrapper);
         if(projects.size()>0)
             throw new MyException("项目名已存在");
+        //为项目创建默认背景
+        Layer layer = new Layer();
         save(project);
+        layer.setProjectId(project.getId());
+        layer.setName(project.getName()+"背景");
+        layer.setWidth(1920);
+        layer.setHeight(1080);
+        layer.setBackColor("white");
+        layerService.save(layer);
         return project;
     }
 
