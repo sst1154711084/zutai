@@ -188,6 +188,9 @@ public class ProjectServiceImpl extends ServiceImpl<ProjectMapper, Project> impl
         layer.setProjectId(projectId);
         layerService.save(layer);
         for(Component component : components){
+            if(component.getTitle() == null){
+                throw new MyException("title字段为空");
+            }
             if("graph".equals(component.getTitle())){
                 Graph graph = ctoGraph(projectId,component);
                 graphs.add(graph);
