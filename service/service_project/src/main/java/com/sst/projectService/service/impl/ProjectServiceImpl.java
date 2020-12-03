@@ -177,7 +177,12 @@ public class ProjectServiceImpl extends ServiceImpl<ProjectMapper, Project> impl
     public void saveProject(String projectId,Layer layer,Component[] components) {
         if(listByIds(Collections.singletonList(projectId)).size()==0)
             throw new MyException("项目不存在");
-        deleteProject(projectId);
+        //删除相关控件
+        QueryWrapper wrapper = new QueryWrapper();
+        wrapper.eq("project_id",projectId);
+        layerService.remove(wrapper);
+        graphService.remove(wrapper);
+        chartService.remove(wrapper);
         List<Graph> graphs = new ArrayList<>();
         List<Chart> charts = new ArrayList<>();
         layer.setProjectId(projectId);
