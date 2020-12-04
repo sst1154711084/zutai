@@ -94,8 +94,11 @@ public class WebSocketServer {
                 String vid = jsonObject.getString("vid");
                 // TODO 把变量的值推送到设备上（修改设备值）
                 Variable variable = variableService.getById(vid);
-                if(Objects.isNull(variable))
+                if(Objects.isNull(variable)){
+                    sendMessage("无此变量");
                     throw new MyException("无此变量");
+                }
+
 //                如果是模拟的变量
                 double max = variable.getMax();
                 double min = variable.getMin();
