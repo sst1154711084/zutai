@@ -79,6 +79,9 @@ public class Component {
         private Integer dataTotal;
 
         private Integer splitNumber;
+
+        private String url;
+
     }
 
     private String id;

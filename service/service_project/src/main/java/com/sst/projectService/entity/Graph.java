@@ -111,5 +111,6 @@ public class Graph implements Serializable {
 
     private String libraryitemId;
 
+    private String url;
 
 }

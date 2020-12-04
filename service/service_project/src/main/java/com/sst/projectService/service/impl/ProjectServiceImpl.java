@@ -91,6 +91,7 @@ public class ProjectServiceImpl extends ServiceImpl<ProjectMapper, Project> impl
             style.setTransform(graph.getTransform());
             style.setVisible(graph.isVisible());
             style.setZIndex(graph.getZIndex());
+            style.setUrl(graph.getUrl());
             component.setStyle(style);
             component.setCreateTime(graph.getCreateTime());
             component.setUpdateTime(graph.getUpdateTime());
@@ -200,7 +201,8 @@ public class ProjectServiceImpl extends ServiceImpl<ProjectMapper, Project> impl
                 charts.add(chart);
             }
             if("image".equals(component.getTitle())){
-
+                Graph graph = ctoGraph(projectId,component);
+                graphs.add(graph);
             }
         }
         graphService.saveBatch(graphs);
@@ -272,6 +274,8 @@ public class ProjectServiceImpl extends ServiceImpl<ProjectMapper, Project> impl
         graph.setVisible(style.isVisible());
         graph.setZIndex(style.getZIndex());
         graph.setName(component.getName());
+        graph.setUrl(style.getUrl());
+        graph.setLibraryitemId(style.getLibraryitemId());
         graph.setIdentifier(component.getIdentifier());
         return graph;
     }
