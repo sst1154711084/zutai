@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @since 2020-12-05
  */
 @RestController
-@RequestMapping("/api/componentHasVariable")
+@RequestMapping("/api/bind")
 public class ComponentHasVariableController {
     @Autowired
     ComponentHasVariableService componentHasVariableService;
