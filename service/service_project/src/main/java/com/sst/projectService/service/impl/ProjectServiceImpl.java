@@ -77,6 +77,7 @@ public class ProjectServiceImpl extends ServiceImpl<ProjectMapper, Project> impl
             style.setBorderColor(graph.getBorderColor());
             style.setBorderWidth(graph.getBorderWidth());
             style.setFontFamily(graph.getFontFamily());
+            style.setFontColor(graph.getFontColor());
             style.setFontSize(graph.getFontSize());
             style.setForeColor(graph.getForeColor());
             style.setIdentifier(graph.getIdentifier());
@@ -116,6 +117,7 @@ public class ProjectServiceImpl extends ServiceImpl<ProjectMapper, Project> impl
             style.setBorderWidth(chart.getBorderWidth());
             style.setFontFamily(chart.getFontFamily());
             style.setFontSize(chart.getFontSize());
+            style.setFontColor(chart.getFontColor());
             style.setForeColor(chart.getForeColor());
             style.setIdentifier(chart.getIdentifier());
             style.setLocked(chart.getLocked());
@@ -193,23 +195,23 @@ public class ProjectServiceImpl extends ServiceImpl<ProjectMapper, Project> impl
                 throw new MyException("title字段为空");
             }
             if("graph".equals(component.getTitle())){
-                Graph graph = ctoGraph(projectId,component);
+                Graph graph = componentToGraph(projectId,component);
                 graphs.add(graph);
             }
-            if("chart".equals(component.getTitle())){
-                Chart chart = ctoChart(projectId,component);
+            else if("chart".equals(component.getTitle())){
+                Chart chart = componentToChart(projectId,component);
                 charts.add(chart);
             }
-            if("image".equals(component.getTitle())){
-                Graph graph = ctoGraph(projectId,component);
+            else if("image".equals(component.getTitle())){
+                Graph graph = componentToGraph(projectId,component);
                 graphs.add(graph);
-            }
+            }else throw new MyException("title值无效");
         }
         graphService.saveBatch(graphs);
         chartService.saveBatch(charts);
     }
 
-    private Chart ctoChart(String projectId,Component component) {
+    private Chart componentToChart(String projectId, Component component) {
         Chart chart = new Chart();
         chart.setProjectId(projectId);
         chart.setId(component.getId());
@@ -224,6 +226,7 @@ public class ProjectServiceImpl extends ServiceImpl<ProjectMapper, Project> impl
         chart.setBorderColor(style.getBorderColor());
         chart.setBorderWidth(style.getBorderWidth());
         chart.setFontFamily(style.getFontFamily());
+        chart.setFontColor(style.getFontColor());
         chart.setFontSize(style.getFontSize());
         chart.setForeColor(style.getForeColor());
         chart.setIdentifier(style.getIdentifier());
@@ -243,7 +246,7 @@ public class ProjectServiceImpl extends ServiceImpl<ProjectMapper, Project> impl
         return chart;
     }
 
-    private Graph ctoGraph(String projectId,Component component) {
+    private Graph componentToGraph(String projectId, Component component) {
         Graph graph = new Graph();
         graph.setProjectId(projectId);
         graph.setId(component.getId());
@@ -260,6 +263,7 @@ public class ProjectServiceImpl extends ServiceImpl<ProjectMapper, Project> impl
         graph.setBorderWidth(style.getBorderWidth());
         graph.setFontFamily(style.getFontFamily());
         graph.setFontSize(style.getFontSize());
+        graph.setFontColor(style.getFontColor());
         graph.setForeColor(style.getForeColor());
         graph.setIdentifier(style.getIdentifier());
         graph.setIsItalic(style.getIsItalic());

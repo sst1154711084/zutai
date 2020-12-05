@@ -43,6 +43,8 @@ public class Component {
 
         private Integer fontSize;
 
+        private String fontColor;
+
         private String fontFamily;
 
         private Integer zIndex;

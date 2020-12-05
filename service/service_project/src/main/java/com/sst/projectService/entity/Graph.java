@@ -78,6 +78,8 @@ public class Graph implements Serializable {
 
     private Integer fontSize;
 
+    private String fontColor;
+
     private String fontFamily;
 
     @ApiModelProperty(value = "层级")
