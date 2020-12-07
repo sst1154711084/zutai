@@ -23,4 +23,6 @@ public interface ComponentHasVariableService extends IService<ComponentHasVariab
     void unbindVariable(String componentId, String variableId);
 
     void unbindVariables(String componentId);
+
+    List<String> getVariableIds(String componentId);
 }

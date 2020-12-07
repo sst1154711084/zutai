@@ -64,10 +64,21 @@ public class ComponentHasVariableServiceImpl extends ServiceImpl<ComponentHasVar
         queryWrapper.select("variable_id");
         List<ComponentHasVariable> componentHasVariables = list(queryWrapper);
         List<String> variableIds = toVariableIds(componentHasVariables);
-        List<Variable> variables = (List<Variable>) variableService.listByIds(variableIds);
+        List<Variable> variables = new ArrayList<>();
+        if(!variableIds.isEmpty())
+            variables = (List<Variable>) variableService.listByIds(variableIds);
         return variables;
     }
 
+    @Override
+    public List<String> getVariableIds(String componentId) {
+        List<Variable> variables = getVariable(componentId);
+        List<String> ids = new ArrayList<>();
+        for(Variable v : variables){
+            ids.add(v.getId());
+        }
+        return ids;
+    }
     @Override
     public void unbindVariable(String componentId, String variableId) {
         QueryWrapper<ComponentHasVariable> queryWrapper = new QueryWrapper<>();
@@ -86,6 +97,8 @@ public class ComponentHasVariableServiceImpl extends ServiceImpl<ComponentHasVar
         queryWrapper.eq("component_id",componentId);
         remove(queryWrapper);
     }
+
+
 
     private void checkVariableExist(String variableId) {
         Variable variable = variableService.getById(variableId);

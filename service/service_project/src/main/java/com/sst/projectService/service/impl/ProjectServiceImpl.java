@@ -60,8 +60,10 @@ public class ProjectServiceImpl extends ServiceImpl<ProjectMapper, Project> impl
         List<Component> components = new ArrayList<>();
         for(Graph graph : graphs){
             Component component = new Component();
+            List<String> variables = componentHasVariableService.getVariableIds(graph.getIdentifier());
             component.setId(graph.getId());
             component.setType(graph.getType());
+            component.setVariableIds(variables.toArray(new String[0]));
             component.setTitle("graph");
             component.setName(graph.getName());
             component.setIdentifier(graph.getIdentifier());
