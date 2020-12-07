@@ -15,8 +15,7 @@ import com.sst.projectService.service.VariableService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
  * <p>
@@ -36,20 +35,25 @@ public class ComponentHasVariableServiceImpl extends ServiceImpl<ComponentHasVar
     @Autowired
     VariableService variableService;
     @Override
-    public ComponentHasVariable bindVariable(String componentId, String variableId) {
+    public void bindVariable(String componentId, String[] variableIds) {
+        if(variableIds==null || variableIds.length==0)return;
         checkComponentExist(componentId);
-        checkVariableExist(variableId);
-        QueryWrapper<ComponentHasVariable> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("component_id",componentId);
-        queryWrapper.eq("variable_id",variableId);
-        ComponentHasVariable one = getOne(queryWrapper);
-        if(one != null)
-            throw new MyException("该控件已绑定此变量");
-        ComponentHasVariable chv = new ComponentHasVariable();
-        chv.setComponentId(componentId);
-        chv.setVariableId(variableId);
-        save(chv);
-        return chv;
+        Set<String> variableIdSet = new HashSet<>(Arrays.asList(variableIds));
+        List<ComponentHasVariable> res = new ArrayList<>();
+        for(String variableId : variableIdSet){
+            checkVariableExist(variableId);
+            QueryWrapper<ComponentHasVariable> queryWrapper = new QueryWrapper<>();
+            queryWrapper.eq("component_id",componentId);
+            queryWrapper.eq("variable_id",variableId);
+            ComponentHasVariable one = getOne(queryWrapper);
+            if(one != null)
+                throw new MyException("该控件已绑定此变量");
+            ComponentHasVariable chv = new ComponentHasVariable();
+            chv.setComponentId(componentId);
+            chv.setVariableId(variableId);
+            res.add(chv);
+        }
+        saveBatch(res);
     }
 
     @Override
@@ -75,6 +79,14 @@ public class ComponentHasVariableServiceImpl extends ServiceImpl<ComponentHasVar
         remove(queryWrapper);
     }
 
+    @Override
+    public void unbindVariables(String componentId) {
+        checkComponentExist(componentId);
+        QueryWrapper<ComponentHasVariable> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("component_id",componentId);
+        remove(queryWrapper);
+    }
+
     private void checkVariableExist(String variableId) {
         Variable variable = variableService.getById(variableId);
         if(variable==null)
@@ -90,8 +102,10 @@ public class ComponentHasVariableServiceImpl extends ServiceImpl<ComponentHasVar
     }
 
     private void checkComponentExist(String componentId) {
-        Graph graph = graphService.getById(componentId);
-        Chart chart = chartService.getById(componentId);
+        QueryWrapper queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("identifier",componentId);
+        Graph graph = graphService.getOne(queryWrapper);
+        Chart chart = chartService.getOne(queryWrapper);
         if(graph==null && chart==null)
             throw new MyException("控件不存在");
     }

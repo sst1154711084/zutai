@@ -29,8 +29,8 @@ public class ComponentHasVariableController {
     ComponentHasVariableService componentHasVariableService;
     //1.控件绑定变量
     @RequestMapping("/bindVariable")
-    public R bindVariable(@NotBlank @RequestParam String componentId,@NotBlank @RequestParam String variableId){
-        ComponentHasVariable chv = componentHasVariableService.bindVariable(componentId, variableId);
+    public R bindVariable(@NotBlank @RequestParam String componentId,@RequestParam String[] variableIds){
+        componentHasVariableService.bindVariable(componentId, variableIds);
         return R.ok().message("绑定成功");
     }
 
@@ -45,6 +45,12 @@ public class ComponentHasVariableController {
     @RequestMapping("/unbindVariable")
     public R unbindVariable(@NotBlank @RequestParam String componentId,@NotBlank @RequestParam String variableId){
         componentHasVariableService.unbindVariable(componentId, variableId);
+        return R.ok();
+    }
+    //3.解除全部变量
+    @RequestMapping("/unbindVariables")
+    public R unbindVariables(@NotBlank @RequestParam String componentId){
+        componentHasVariableService.unbindVariables(componentId);
         return R.ok();
     }
 }

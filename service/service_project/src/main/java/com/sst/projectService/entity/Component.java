@@ -100,6 +100,8 @@ public class Component {
 
     String identifier;
 
+    String[] variableIds;
+
     private String name;
 
     @ApiModelProperty(value = "对应的项目id")

@@ -5,10 +5,7 @@ import com.sst.commonutils.MyException;
 import com.sst.projectService.entity.*;
 import com.sst.projectService.entity.ro.ResultProject;
 import com.sst.projectService.mapper.ProjectMapper;
-import com.sst.projectService.service.ChartService;
-import com.sst.projectService.service.GraphService;
-import com.sst.projectService.service.LayerService;
-import com.sst.projectService.service.ProjectService;
+import com.sst.projectService.service.*;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,6 +32,9 @@ public class ProjectServiceImpl extends ServiceImpl<ProjectMapper, Project> impl
     GraphService graphService;
     @Autowired
     ChartService chartService;
+
+    @Autowired
+    ComponentHasVariableService componentHasVariableService;
     @Override
     public List<Project> getAllProject(Project project) {
         QueryWrapper<Project> queryWrapper = new QueryWrapper<>(project);
@@ -206,6 +206,8 @@ public class ProjectServiceImpl extends ServiceImpl<ProjectMapper, Project> impl
                 Graph graph = componentToGraph(projectId,component);
                 graphs.add(graph);
             }else throw new MyException("title值无效");
+            componentHasVariableService.unbindVariables(component.getIdentifier());
+            componentHasVariableService.bindVariable(component.getIdentifier(),component.getVariableIds());
         }
         graphService.saveBatch(graphs);
         chartService.saveBatch(charts);
