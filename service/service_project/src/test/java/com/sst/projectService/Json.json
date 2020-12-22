@@ -1,0 +1,113 @@
+{
+  "layer": {
+    "id": "1339120575682052097",
+    "name": "test背景",
+    "width": 1920,
+    "height": 1080,
+    "backColor": "#061456",
+    "description": null,
+    "backgroundImage": null,
+    "widthHeightRatio": null
+  },
+  "components": [
+    {
+      "title": "chart",
+      "type": "pie",
+      "style": {
+        "position": {
+          "x": 38.62686567164181,
+          "y": 31.80597014925378,
+          "w": 534.3283582089553,
+          "h": 405.97014925373134
+        },
+        "zIndex": 1,
+        "transform": 0,
+        "backColor": "transparent",
+        "foreColor": "transparent",
+        "fontFamily": "",
+        "fontColor": "rgb(197, 61, 61)",
+        "fontSize": "20",
+        "text": "pie图",
+        "visible": true,
+        "angle": 0,
+        "borderWidth": 1,
+        "borderColor": "#ccccccff",
+        "temp": {
+          "position": {
+            "x": 38.62686567164181,
+            "y": 31.80597014925378
+          }
+        }
+      },
+      "trafficWay": [
+        {
+          "name": "走路",
+          "color": "rgb(0,255,25)"
+        },
+        {
+          "name": "起飞",
+          "color": "rgb(0,255,155)"
+        }
+      ],
+      "identifier": "cb97ab5a-4a70-da9c-a8ba-2182b1327c0a",
+      "name": "pie0",
+      "insertTime": 1608466231033
+    },
+    {
+      "title": "chart",
+      "type": "time-line",
+      "style": {
+        "position": {
+          "x": 567.4179104477611,
+          "y": 12.791044776119431,
+          "w": 1019.4029850746268,
+          "h": 492.5373134328358
+        },
+        "zIndex": 1,
+        "transform": 0,
+        "backColor": "transparent",
+        "foreColor": "transparent",
+        "borderColor": "rgb(38,217,255)",
+        "textColor": "rgba(250,250,250,0.6)",
+        "visible": true,
+        "angle": 0,
+        "borderWidth": 1,
+        "temp": {
+          "position": {
+            "x": 567.4179104477611,
+            "y": 12.791044776119431
+          }
+        }
+      },
+      "trafficWay": [
+        {
+          "name": "业务1",
+          "symbolSize": 15,
+          "symbolColor": "rgb(160,196,225)",
+          "lineColor": "rgb(255,255,255)",
+          "isSmooth": true,
+          "areaColor": "rgb(61,126,235)",
+          "symbol": "circle",
+          "vid": "1334809662174941185"
+        },
+        {
+          "name": "业务2",
+          "symbolSize": 15,
+          "symbolColor": "rgb(15,197,243)",
+          "lineColor": "rgb(160,196,225)",
+          "isSmooth": true,
+          "areaColor": "rgb(61,126,235)",
+          "symbol": "rect",
+          "vid": "1334813626060656641"
+        }
+      ],
+      "identifier": "daa9d147-b962-1a75-8ca6-15f5da289e76",
+      "name": "time-line1",
+      "insertTime": 1608466322514,
+      "variables": [
+        "1334809662174941185",
+        "1334813626060656641"
+      ]
+    }
+  ]
+}

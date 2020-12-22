@@ -27,10 +27,10 @@ import java.util.List;
 public class ComponentHasVariableController {
     @Autowired
     ComponentHasVariableService componentHasVariableService;
-    //1.控件绑定变量
+    //1.图表控件绑定变量
     @RequestMapping("/bindVariable")
-    public R bindVariable(@NotBlank @RequestParam String componentId,@RequestParam String[] variableIds){
-        componentHasVariableService.bindVariable(componentId, variableIds);
+    public R bindVariable(@NotBlank @RequestParam String componentId,@RequestParam String variableId){
+        componentHasVariableService.bindVariable(componentId, variableId);
         return R.ok().message("绑定成功");
     }
 

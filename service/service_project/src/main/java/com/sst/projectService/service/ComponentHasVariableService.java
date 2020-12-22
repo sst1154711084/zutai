@@ -16,7 +16,7 @@ import java.util.List;
  */
 public interface ComponentHasVariableService extends IService<ComponentHasVariable> {
 
-    void bindVariable(String componentId, String[] variableIds);
+    void bindVariable(String componentId, String variableId);
 
     List<Variable> getVariable(String componentId);
 

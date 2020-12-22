@@ -35,25 +35,20 @@ public class ComponentHasVariableServiceImpl extends ServiceImpl<ComponentHasVar
     @Autowired
     VariableService variableService;
     @Override
-    public void bindVariable(String componentId, String[] variableIds) {
-        if(variableIds==null || variableIds.length==0)return;
-        checkComponentExist(componentId);
-        Set<String> variableIdSet = new HashSet<>(Arrays.asList(variableIds));
-        List<ComponentHasVariable> res = new ArrayList<>();
-        for(String variableId : variableIdSet){
-            checkVariableExist(variableId);
-            QueryWrapper<ComponentHasVariable> queryWrapper = new QueryWrapper<>();
-            queryWrapper.eq("component_id",componentId);
-            queryWrapper.eq("variable_id",variableId);
-            ComponentHasVariable one = getOne(queryWrapper);
-            if(one != null)
-                throw new MyException("该控件已绑定此变量");
-            ComponentHasVariable chv = new ComponentHasVariable();
-            chv.setComponentId(componentId);
-            chv.setVariableId(variableId);
-            res.add(chv);
-        }
-        saveBatch(res);
+    public void bindVariable(String chartComponentId, String variableId) {
+        if(variableId==null || variableId.length()==0)return;
+        checkComponentExist(chartComponentId);
+        checkVariableExist(variableId);
+        QueryWrapper<ComponentHasVariable> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("component_id",chartComponentId);
+        queryWrapper.eq("variable_id",variableId);
+        ComponentHasVariable one = getOne(queryWrapper);
+        if(one != null)
+            throw new MyException("该控件已绑定此变量");
+        ComponentHasVariable chv = new ComponentHasVariable();
+        chv.setComponentId(chartComponentId);
+        chv.setVariableId(variableId);
+        save(chv);
     }
 
     @Override
@@ -84,15 +79,13 @@ public class ComponentHasVariableServiceImpl extends ServiceImpl<ComponentHasVar
         QueryWrapper<ComponentHasVariable> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("component_id",componentId);
         queryWrapper.eq("variable_id",variableId);
-        ComponentHasVariable chv = getOne(queryWrapper);
-        if(chv == null)
-            throw new MyException("该控件没有绑定此变量");
         remove(queryWrapper);
     }
 
     @Override
     public void unbindVariables(String componentId) {
-        checkComponentExist(componentId);
+        if(componentId==null || componentId.length()==0)return;
+        //checkComponentExist(componentId);
         QueryWrapper<ComponentHasVariable> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("component_id",componentId);
         remove(queryWrapper);
@@ -119,7 +112,7 @@ public class ComponentHasVariableServiceImpl extends ServiceImpl<ComponentHasVar
         queryWrapper.eq("identifier",componentId);
         Graph graph = graphService.getOne(queryWrapper);
         Chart chart = chartService.getOne(queryWrapper);
-        if(graph==null && chart==null)
-            throw new MyException("控件不存在");
+        /*if(graph==null && chart==null)
+            throw new MyException("控件不存在");*/
     }
 }

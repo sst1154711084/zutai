@@ -32,6 +32,8 @@ public class ProjectServiceImpl extends ServiceImpl<ProjectMapper, Project> impl
     GraphService graphService;
     @Autowired
     ChartService chartService;
+    @Autowired
+    ChartComponentService chartComponentService;
 
     @Autowired
     ComponentHasVariableService componentHasVariableService;
@@ -49,7 +51,7 @@ public class ProjectServiceImpl extends ServiceImpl<ProjectMapper, Project> impl
         wrapper.eq("project_id",id);
         Layer layer = layerService.getOne(wrapper);
         List<Graph> graphs = graphService.listObjs(wrapper);
-        List<Chart> charts = chartService.listObjs(wrapper);
+        List<Chart> charts = chartService.findAll(id);
         ResultProject result = toResultProject(layer,graphs,charts);
         return result;
     }
@@ -106,6 +108,7 @@ public class ProjectServiceImpl extends ServiceImpl<ProjectMapper, Project> impl
             component.setType(chart.getType());
             component.setTitle("chart");
             component.setName(chart.getName());
+            component.setTrafficWay(chart.getChartComponents());
             component.setIdentifier(chart.getIdentifier());
             Component.Style style = component.new Style();
             Component.Style.Position position = style.new Position();
@@ -144,16 +147,21 @@ public class ProjectServiceImpl extends ServiceImpl<ProjectMapper, Project> impl
     }
 
     @Override
-    public boolean deleteProject(String id) {
-        if(listByIds(Collections.singletonList(id)).size()==0)
+    public boolean deleteProject(String projectId) {
+        deleteMsg(projectId);
+        removeById(projectId);
+        return true;
+    }
+
+    private void deleteMsg(String projectId) {
+        if(getById(projectId)==null)
             throw new MyException("项目不存在");
-        removeById(id);
+        //删除相关控件
         QueryWrapper wrapper = new QueryWrapper();
-        wrapper.eq("project_id",id);
+        wrapper.eq("project_id",projectId);
         layerService.remove(wrapper);
         graphService.remove(wrapper);
-        chartService.remove(wrapper);
-        return true;
+        chartService.delete(projectId);
     }
 
     @Override
@@ -180,14 +188,7 @@ public class ProjectServiceImpl extends ServiceImpl<ProjectMapper, Project> impl
 
     @Override
     public void saveProject(String projectId,Layer layer,Component[] components) {
-        if(listByIds(Collections.singletonList(projectId)).size()==0)
-            throw new MyException("项目不存在");
-        //删除相关控件
-        QueryWrapper wrapper = new QueryWrapper();
-        wrapper.eq("project_id",projectId);
-        layerService.remove(wrapper);
-        graphService.remove(wrapper);
-        chartService.remove(wrapper);
+        deleteMsg(projectId);
         List<Graph> graphs = new ArrayList<>();
         List<Chart> charts = new ArrayList<>();
         layer.setProjectId(projectId);
@@ -203,25 +204,26 @@ public class ProjectServiceImpl extends ServiceImpl<ProjectMapper, Project> impl
             else if("chart".equals(component.getTitle())){
                 Chart chart = componentToChart(projectId,component);
                 charts.add(chart);
+                chartService.bindVariable(chart);
             }
             else if("image".equals(component.getTitle())){
                 Graph graph = componentToGraph(projectId,component);
                 graphs.add(graph);
             }else throw new MyException("title值无效");
-            componentHasVariableService.unbindVariables(component.getIdentifier());
-            componentHasVariableService.bindVariable(component.getIdentifier(),component.getVariableIds());
+
         }
         graphService.saveBatch(graphs);
-        chartService.saveBatch(charts);
+        chartService.addBatch(charts);
     }
 
     private Chart componentToChart(String projectId, Component component) {
         Chart chart = new Chart();
         chart.setProjectId(projectId);
-        chart.setId(component.getId());
         chart.setType(component.getType());
         Component.Style style = component.getStyle();
         Component.Style.Position position = style.getPosition();
+        //保存每个chart控件的子控件
+        chart.setChartComponents(component.getTrafficWay());
         chart.setX(position.getX());
         chart.setY(position.getY());
         chart.setH(position.getH());

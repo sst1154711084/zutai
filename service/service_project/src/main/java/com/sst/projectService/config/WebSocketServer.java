@@ -99,11 +99,11 @@ public class WebSocketServer {
                     throw new MyException("无此变量");
                 }
 
-//                如果是模拟的变量
+
                 double max = variable.getMax();
                 double min = variable.getMin();
                 int millTime = variable.getFrequency();
-
+                // 如果是模拟的变量
                 if(variable.getDataSourceId()==null){
                     ((Runnable) () -> {
                         while(webSocketMap.get(id)!=null){

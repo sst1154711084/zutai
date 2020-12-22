@@ -5,6 +5,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import java.util.Date;
+import java.util.List;
 
 @Data
 public class Component {
@@ -103,6 +104,8 @@ public class Component {
     String[] variableIds;
 
     private String name;
+
+    List<ChartComponent> trafficWay;
 
     @ApiModelProperty(value = "对应的项目id")
     private String projectId;

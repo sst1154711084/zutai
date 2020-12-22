@@ -1,0 +1,234 @@
+{
+  "layer": {
+    "id": "1340664864312549377",
+    "name": "ttt背景",
+    "width": 1920,
+    "height": 1080,
+    "backColor": "#0D0C36",
+    "description": null,
+    "backgroundImage": null,
+    "widthHeightRatio": null
+  },
+  "components": [
+    {
+      "title": "chart",
+      "type": "bubble",
+      "style": {
+        "position": {
+          "x": 1386,
+          "y": 141,
+          "w": 272.5,
+          "h": 257.5
+        },
+        "zIndex": 1,
+        "transform": 0,
+        "backColor": "transparent",
+        "foreColor": "transparent",
+        "fontFamily": "",
+        "fontColor": "rgb(197, 61, 61)",
+        "fontSize": "20",
+        "visible": true,
+        "angle": 0,
+        "borderWidth": 1,
+        "borderColor": "#ccccccff",
+        "temp": {
+          "position": {
+            "x": 1488.5,
+            "y": 76
+          }
+        }
+      },
+      "trafficWay": [
+        {
+          "start": "北京",
+          "to": "上海"
+        },
+        {
+          "start": "上海",
+          "to": "北京"
+        }
+      ],
+      "identifier": "05792868-624e-7f32-3c21-8b429d05df04",
+      "name": "bubble3",
+      "insertTime": 1608609433211
+    },
+    {
+      "title": "chart",
+      "type": "value",
+      "style": {
+        "position": {
+          "x": 114,
+          "y": 224,
+          "w": 200,
+          "h": 200
+        },
+        "backColor": "transparent",
+        "foreColor": "#ffffff",
+        "zIndex": 1,
+        "fontColor": "#ffffff",
+        "transform": 0,
+        "text": "%",
+        "textAlign": "center",
+        "fontSize": 50,
+        "fontFamily": "Arial",
+        "isWeight": 0,
+        "isItalic": 0,
+        "isUnderLine": 0,
+        "splitNumber": 2,
+        "dataTotal": 1,
+        "lineHeight": 100,
+        "visible": true,
+        "angle": 0,
+        "borderWidth": 1,
+        "borderColor": "#ccccccff",
+        "type": "text"
+      },
+      "identifier": "7385251a-8b2c-ea58-da8c-eaaeeef0e6cf",
+      "name": "value1",
+      "insertTime": 1608609827424
+    },
+    {
+      "title": "chart",
+      "type": "liquid-fill",
+      "style": {
+        "position": {
+          "x": 266,
+          "y": 659,
+          "w": 200,
+          "h": 200
+        },
+        "zIndex": 1,
+        "transform": 0,
+        "backColor": "transparent",
+        "foreColor": "transparent",
+        "fontFamily": "",
+        "fontColor": "black",
+        "fontSize": "20",
+        "text": "预定义",
+        "waveColor": "rbg(68, 145, 253)",
+        "innerColor": "rbg(69, 73, 240)",
+        "borderColor": "rbg(69, 73, 240)",
+        "visible": true,
+        "angle": 0,
+        "borderWidth": 1
+      },
+      "trafficWay": {
+        "name": "预定义",
+        "max": 100,
+        "min": 0
+      },
+      "identifier": "178ceb61-6108-a22f-ef4e-c310c281298b",
+      "name": "liquid-fill2",
+      "insertTime": 1608609828821
+    },
+    {
+      "title": "chart",
+      "type": "gauge",
+      "style": {
+        "position": {
+          "x": 631,
+          "y": 401,
+          "w": 200,
+          "h": 200
+        },
+        "zIndex": 1,
+        "transform": 0,
+        "backColor": "transparent",
+        "foreColor": "transparent",
+        "fontFamily": "",
+        "fontSize": "20",
+        "fontColor": "rgb(70, 142, 253)",
+        "innerColor": "rgb(70, 142, 253)",
+        "splitNumber": 10,
+        "visible": true,
+        "angle": 0,
+        "borderWidth": 1,
+        "borderColor": "#ccccccff"
+      },
+      "trafficWay": {
+        "name": "仪表盘",
+        "max": 100,
+        "min": 0
+      },
+      "identifier": "e0956b31-7b62-1a1c-e40d-dd56d1a22293",
+      "name": "gauge3",
+      "insertTime": 1608609830245
+    },
+    {
+      "title": "chart",
+      "type": "battery",
+      "style": {
+        "position": {
+          "x": 671,
+          "y": 199,
+          "w": 200,
+          "h": 200
+        },
+        "zIndex": 1,
+        "transform": 0,
+        "backColor": "transparent",
+        "foreColor": "transparent",
+        "innerColor": "rgb(21,136,209)",
+        "fontColor": "rgb(245,245,245)",
+        "fontSize": 15,
+        "splitNumber": 28,
+        "visible": true,
+        "angle": 0,
+        "borderWidth": 1,
+        "borderColor": "#ccccccff"
+      },
+      "trafficWay": {
+        "name": "累计完成",
+        "max": 1000
+      },
+      "identifier": "958e6761-db78-33c3-65c7-6f8cc38395e9",
+      "name": "battery4",
+      "insertTime": 1608609833287
+    },
+    {
+      "title": "chart",
+      "type": "time-line",
+      "style": {
+        "position": {
+          "x": 1314,
+          "y": 761,
+          "w": 200,
+          "h": 200
+        },
+        "zIndex": 1,
+        "transform": 0,
+        "backColor": "transparent",
+        "foreColor": "transparent",
+        "borderColor": "rgb(38,217,255)",
+        "textColor": "rgba(250,250,250,0.6)",
+        "visible": true,
+        "angle": 0,
+        "borderWidth": 1
+      },
+      "trafficWay": [
+        {
+          "name": "业务1",
+          "symbolSize": 15,
+          "symbolColor": "rgb(160,196,225)",
+          "lineColor": "rgb(255,255,255)",
+          "isSmooth": true,
+          "areaColor": "rgb(61,126,235)",
+          "symbol": "circle"
+        },
+        {
+          "name": "业务1",
+          "symbolSize": 15,
+          "symbolColor": "rgb(15,197,243)",
+          "lineColor": "rgb(160,196,225)",
+          "isSmooth": true,
+          "areaColor": "rgb(61,126,235)",
+          "symbol": "rect"
+        }
+      ],
+      "identifier": "81eb6ede-b2c8-de17-cfb9-98e547d9e2e8",
+      "name": "time-line5",
+      "insertTime": 1608609834690
+    }
+  ],
+  "id": "1340664864249634818"
+}
