@@ -2,10 +2,13 @@ package com.sst.projectService.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.sst.commonutils.MyException;
+import com.sst.projectService.entity.Libraryitem;
 import com.sst.projectService.entity.Sharedlibrary;
 import com.sst.projectService.mapper.SharedlibraryMapper;
+import com.sst.projectService.service.LibraryitemService;
 import com.sst.projectService.service.SharedlibraryService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
@@ -26,6 +29,8 @@ import java.util.List;
 @Service
 public class SharedlibraryServiceImpl extends ServiceImpl<SharedlibraryMapper, Sharedlibrary> implements SharedlibraryService {
 
+    @Autowired
+    LibraryitemService libraryitemService;
     @Override
     public Sharedlibrary addLibrary(String name) {
         QueryWrapper<Sharedlibrary> queryWrapper = new QueryWrapper<>();
@@ -41,12 +46,14 @@ public class SharedlibraryServiceImpl extends ServiceImpl<SharedlibraryMapper, S
 
     @Override
     public void deleteLibraryById(String id) {
-        Collection<Sharedlibrary> sharedlibraries = listByIds(Collections.singletonList(id));
-        if (sharedlibraries.size() == 0)
+        Sharedlibrary sharedlibrary = getById(id);
+        if (sharedlibrary ==null)
             throw new MyException("库不存在");
+        List<Libraryitem> libraryitems = libraryitemService.getLibrary(id);
+        for(Libraryitem item : libraryitems){
+            libraryitemService.deleteFile(item.getId());
+        }
         boolean b = removeById(id);
-        if (!b)
-            throw new MyException("删除失败");
     }
 
     @Override

@@ -66,7 +66,7 @@ public class LibraryitemController {
 
         //判断文件是否已经存在
         if (dest.exists()) {
-            return R.ok().message("文件已经存在");
+            return R.error().message("文件已经存在");
         }
 
         //判断文件父目录是否存在
@@ -95,5 +95,11 @@ public class LibraryitemController {
         return R.ok().data(url);
     }
 
+    //3.删除图片
+    @RequestMapping("/deleteFile")
+    public R deleteFile(@RequestParam @NotBlank String id){
+        libraryitemService.deleteFile(id);
+        return R.ok();
+    }
 }
 

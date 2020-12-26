@@ -3,6 +3,7 @@ package com.sst.projectService.service;
 import com.sst.projectService.entity.Libraryitem;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -17,4 +18,5 @@ public interface LibraryitemService extends IService<Libraryitem> {
 
     List<Libraryitem> getLibrary(String libraryId);
 
+    void deleteFile(String id);
 }

@@ -9,6 +9,7 @@ import com.sst.projectService.service.*;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
@@ -187,6 +188,7 @@ public class ProjectServiceImpl extends ServiceImpl<ProjectMapper, Project> impl
     }
 
     @Override
+    @Transactional
     public void saveProject(String projectId,Layer layer,Component[] components) {
         deleteMsg(projectId);
         List<Graph> graphs = new ArrayList<>();
