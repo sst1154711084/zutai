@@ -43,5 +43,11 @@ public class VariableController {
         variableService.removeById(id);
         return R.ok().message("删除成功");
     }
+    //4.编辑变量
+    @RequestMapping("updateVariable")
+    public R updateVariable(@RequestBody Variable variable){
+        variableService.updateById(variable);
+        return R.ok();
+    }
 }
 
