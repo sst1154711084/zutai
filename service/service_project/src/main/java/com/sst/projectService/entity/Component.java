@@ -87,6 +87,8 @@ public class Component {
 
         private int lineWidth;
 
+        private int speed;
+
     }
 
     private String id;

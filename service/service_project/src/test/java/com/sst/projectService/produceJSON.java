@@ -25,21 +25,10 @@ public class produceJSON {
     }
 
     public static void main(String[] args) {
-        String[] strs = new String[]{"3242","2131","123","321"};
-        Map<String, List<String>>map = new HashMap<>();
-        for(int i = 0;i < strs.length;i++){
-            char[] temp =  strs[i].toCharArray();
-            Arrays.sort(temp);
-            String news = new String(temp);
-            if(map.containsKey(news))map.get(news).add(strs[i]);
-            else map.put(news,Arrays.asList(strs[i]));
+        Map<Integer,Integer> map = new HashMap<>();
+        map.put(2132,12);
 
-        }
-        List<List<String>> res = new ArrayList();
-        for(Map.Entry<String,List<String>> entry : map.entrySet()){
-            res.add(entry.getValue());
-        }
-        System.out.println();
+        System.out.println(map.get(2132));
     }
 
 

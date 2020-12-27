@@ -87,6 +87,7 @@ public class ProjectServiceImpl extends ServiceImpl<ProjectMapper, Project> impl
             style.setForeColor(graph.getForeColor());
             style.setIdentifier(graph.getIdentifier());
             style.setIsItalic(graph.getIsItalic());
+            style.setSpeed(graph.getSpeed());
             style.setIsUnderline(graph.getIsUnderline());
             style.setIsWeight(graph.getIsWeight());
             style.setLibraryitemId(graph.getLibraryitemId());
@@ -269,6 +270,7 @@ public class ProjectServiceImpl extends ServiceImpl<ProjectMapper, Project> impl
         graph.setAngle(style.getAngle());
         graph.setBackColor(style.getBackColor());
         graph.setBorderColor(style.getBorderColor());
+        graph.setSpeed(style.getSpeed());
         graph.setBorderWidth(style.getBorderWidth());
         graph.setFontFamily(style.getFontFamily());
         graph.setFontSize(style.getFontSize());

@@ -117,4 +117,6 @@ public class Graph implements Serializable {
 
     private int lineWidth;
 
+    private int speed;
+
 }
