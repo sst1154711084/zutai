@@ -46,7 +46,7 @@ public class VariableController {
     //4.编辑变量
     @RequestMapping("updateVariable")
     public R updateVariable(@RequestBody Variable variable){
-l        variableService.updateById(variable);
+        variableService.updateById(variable);
         return R.ok();
     }
 }
