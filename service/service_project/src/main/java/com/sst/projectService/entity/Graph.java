@@ -115,4 +115,6 @@ public class Graph implements Serializable {
 
     private String url;
 
+    private int lineWidth;
+
 }

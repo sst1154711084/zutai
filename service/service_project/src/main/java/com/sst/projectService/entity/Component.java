@@ -85,6 +85,8 @@ public class Component {
 
         private String url;
 
+        private int lineWidth;
+
     }
 
     private String id;
