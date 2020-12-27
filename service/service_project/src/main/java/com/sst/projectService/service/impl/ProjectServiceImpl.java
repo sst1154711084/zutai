@@ -98,7 +98,7 @@ public class ProjectServiceImpl extends ServiceImpl<ProjectMapper, Project> impl
             style.setTextAlign(graph.getTextAlign());
             style.setTransform(graph.getTransform());
             style.setVisible(graph.isVisible());
-            style.setZIndex(graph.getZIndex());
+            style.setZindex(graph.getZIndex());
             style.setUrl(graph.getUrl());
             component.setStyle(style);
             component.setCreateTime(graph.getCreateTime());
@@ -132,7 +132,7 @@ public class ProjectServiceImpl extends ServiceImpl<ProjectMapper, Project> impl
             style.setText(chart.getText());
             style.setTransform(chart.getTransform());
             style.setVisible(chart.getVisible());
-            style.setZIndex(chart.getZIndex());
+            style.setZindex(chart.getZIndex());
             style.setDataTotal(chart.getDataTotal());
             style.setInnerColor(chart.getInnerColor());
             style.setMax(chart.getMax());
@@ -243,7 +243,7 @@ public class ProjectServiceImpl extends ServiceImpl<ProjectMapper, Project> impl
         chart.setLocked(style.getLocked());
         chart.setText(style.getText());
         chart.setTransform(style.getTransform());
-        chart.setZIndex(style.getZIndex());
+        chart.setZIndex(style.getZindex());
         chart.setDataTotal(style.getDataTotal());
         chart.setInnerColor(style.getInnerColor());
         chart.setMax(style.getMax());
@@ -288,7 +288,7 @@ public class ProjectServiceImpl extends ServiceImpl<ProjectMapper, Project> impl
         graph.setTextAlign(style.getTextAlign());
         graph.setTransform(style.getTransform());
         graph.setVisible(style.isVisible());
-        graph.setZIndex(style.getZIndex());
+        graph.setZIndex(style.getZindex());
         graph.setName(component.getName());
         graph.setUrl(style.getUrl());
         graph.setLibraryitemId(style.getLibraryitemId());

@@ -48,7 +48,7 @@ public class Component {
 
         private String fontFamily;
 
-        private Integer zIndex;
+        private Integer zindex;
 
         @ApiModelProperty(value = "圆角角度")
         private Double radius;
