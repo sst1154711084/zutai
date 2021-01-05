@@ -66,7 +66,7 @@ public class LibraryitemController {
 
         //判断文件是否已经存在
         if (dest.exists()) {
-            return R.error().message("文件已经存在");
+            return R.error().message("文件已经存在").data("http://localhost:8001/images/"+fileName);
         }
 
         //判断文件父目录是否存在
