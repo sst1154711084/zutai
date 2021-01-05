@@ -107,6 +107,10 @@ public class Component {
 
     String[] variableIds;
 
+    String[] widths;
+
+    String[] fields;
+
     private String name;
 
     List<ChartComponent> trafficWay;

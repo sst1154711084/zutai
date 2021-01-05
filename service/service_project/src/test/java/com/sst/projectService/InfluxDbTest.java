@@ -43,9 +43,7 @@ class InfluxDbTest {
                     .build();
             influxDB.write(point);
         }
-       // influxDB.write(batchPoints);
-
-
+        influxDB.write(batchPoints);
     }
 
     @Test

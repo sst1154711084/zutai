@@ -108,6 +108,9 @@ public class Chart implements Serializable {
 
     private Integer splitNumber;
 
+    private String fields;
+
+    private String widths;
     @TableField(exist = false)
     private List<ChartComponent> chartComponents;
 }

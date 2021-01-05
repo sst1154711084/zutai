@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -111,6 +112,10 @@ public class ProjectServiceImpl extends ServiceImpl<ProjectMapper, Project> impl
             component.setType(chart.getType());
             component.setTitle("chart");
             component.setName(chart.getName());
+            String fields = chart.getFields();
+            String widths = chart.getWidths();
+            if(fields!=null)component.setFields(fields.substring(1,fields.length()-1).split(","));
+            if(widths!=null)component.setWidths(widths.substring(1,widths.length()-1).split(","));
             component.setTrafficWay(chart.getChartComponents());
             component.setIdentifier(chart.getIdentifier());
             Component.Style style = component.new Style();
@@ -253,6 +258,13 @@ public class ProjectServiceImpl extends ServiceImpl<ProjectMapper, Project> impl
         chart.setWaveColor(style.getWaveColor());
         chart.setName(component.getName());
         chart.setIdentifier(component.getIdentifier());
+        String[] widths = component.getWidths();
+        String[] fields = component.getFields();
+        if(fields!=null && widths!=null){
+            if(fields.length!=widths.length)throw new MyException("表格名与表格宽度个数不一致");
+            chart.setFields(Arrays.asList(fields).toString());
+            chart.setWidths(Arrays.asList(widths).toString());
+        }else if(fields!=null || widths!=null) throw new MyException("表格名或表格宽度不存在");
         return chart;
     }
 
